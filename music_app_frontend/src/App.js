@@ -10,6 +10,7 @@ import Search from './pages/Search';
 import Playlists from './pages/Playlists';
 import Favorites from './pages/Favorites';
 import NotFound from './pages/NotFound';
+import Settings from './pages/Settings';
 
 // PUBLIC_INTERFACE
 function App() {
@@ -25,6 +26,7 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/playlists" element={<Playlists />} />
               <Route path="/favorites" element={<Favorites />} />
+              <Route path="/settings" element={<Settings />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

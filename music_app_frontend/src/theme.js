@@ -82,3 +82,95 @@ export function applyThemeVars() {
   // Border stays consistent
   r.style.setProperty('--border', '1px solid rgba(17,24,39,0.08)');
 }
+
+// PUBLIC_INTERFACE
+export function applyUserTheme({ mode = 'light', skeuoIntensity = 60, highContrast = false, reducedMotion = false } = {}) {
+  /**
+   * Apply user-specific theme preferences:
+   * - Dark/Light mode
+   * - Skeuomorphic intensity (affects bevel, gloss, elevation)
+   * - High contrast adjustments
+   * - Reduced motion (affects transition durations)
+   */
+  const r = document.documentElement;
+
+  // Base tokens first
+  applyThemeVars();
+
+  // Mode adjustments (colors and surfaces)
+  if (mode === 'dark') {
+    r.style.setProperty('--color-bg', '#0f172a');
+    r.style.setProperty('--color-surface', '#0b1220');
+    r.style.setProperty('--color-text', '#e5e7eb');
+    r.style.setProperty('--color-muted', '#94a3b8');
+    r.style.setProperty('--gradient', 'linear-gradient(135deg, rgba(59,130,246,0.10), #0f172a)');
+
+    r.style.setProperty('--surface-muted', 'linear-gradient(to bottom, #0f172a, #0b1220)');
+    r.style.setProperty('--surface-raised', 'linear-gradient(to bottom, #111827, #0f172a)');
+    r.style.setProperty('--surface-sunken', 'linear-gradient(to bottom, #0b1220, #0a0f1b)');
+
+    // Dark bevel/shadows baseline
+    r.style.setProperty('--bevel-light', 'rgba(255,255,255,0.06)');
+    r.style.setProperty('--bevel-dark', 'rgba(0,0,0,0.6)');
+  } else {
+    // reset to light defaults
+    r.style.setProperty('--color-bg', theme.colors.background);
+    r.style.setProperty('--color-surface', theme.colors.surface);
+    r.style.setProperty('--color-text', theme.colors.text);
+    r.style.setProperty('--color-muted', theme.colors.muted);
+    r.style.setProperty('--gradient', theme.gradient);
+
+    r.style.setProperty('--surface-muted', theme.surfaces.muted);
+    r.style.setProperty('--surface-raised', theme.surfaces.raised);
+    r.style.setProperty('--surface-sunken', theme.surfaces.sunken);
+
+    r.style.setProperty('--bevel-light', theme.bevel.light);
+    r.style.setProperty('--bevel-dark', theme.bevel.dark);
+  }
+
+  // Intensity mapping (0..100) to gloss/bevel/shadow strengths
+  const clamped = Math.max(0, Math.min(100, Number(skeuoIntensity) || 0));
+  const glossAlpha = 0.15 + (clamped / 100) * 0.5; // 0.15..0.65
+  const bevelLightAlpha = mode === 'dark'
+    ? 0.03 + (clamped / 100) * 0.12
+    : 0.5 + (clamped / 100) * 0.4; // 0.5..0.9
+  const bevelDarkAlpha = mode === 'dark'
+    ? 0.4 + (clamped / 100) * 0.4 // 0.4..0.8
+    : 0.08 + (clamped / 100) * 0.12; // 0.08..0.2
+
+  r.style.setProperty('--gloss-start', `rgba(255,255,255,${glossAlpha})`);
+  r.style.setProperty('--gloss-end', 'rgba(255,255,255,0)');
+  if (mode === 'dark') {
+    r.style.setProperty('--bevel-light', `rgba(255,255,255,${bevelLightAlpha})`);
+    r.style.setProperty('--bevel-dark', `rgba(0,0,0,${bevelDarkAlpha})`);
+  } else {
+    r.style.setProperty('--bevel-light', `rgba(255,255,255,${bevelLightAlpha})`);
+    r.style.setProperty('--bevel-dark', `rgba(17,24,39,${bevelDarkAlpha})`);
+  }
+
+  // Elevation depth (outer shadows)
+  const elev1Opacity = mode === 'dark' ? (0.12 + (clamped / 100) * 0.14) : (0.06 + (clamped / 100) * 0.06);
+  const elev2Opacity = mode === 'dark' ? (0.18 + (clamped / 100) * 0.18) : (0.10 + (clamped / 100) * 0.08);
+  r.style.setProperty('--elev-1', `0 4px 10px rgba(0,0,0,${elev1Opacity}), 0 1px 0 rgba(255,255,255,0.4) inset`);
+  r.style.setProperty('--elev-2', `0 10px 24px rgba(0,0,0,${elev2Opacity}), 0 2px 0 rgba(255,255,255,0.35) inset`);
+
+  // High contrast tweaks
+  if (highContrast) {
+    r.style.setProperty('--color-text', mode === 'dark' ? '#ffffff' : '#0b0f19');
+    r.style.setProperty('--color-muted', mode === 'dark' ? '#e5e7eb' : '#111827');
+    r.style.setProperty('--border', '1px solid rgba(17,24,39,0.22)');
+  } else {
+    r.style.setProperty('--border', '1px solid rgba(17,24,39,0.08)');
+  }
+
+  // Reduced motion -> shorten or remove transitions
+  if (reducedMotion) {
+    r.style.setProperty('--transition-fast', '0ms');
+    r.style.setProperty('--transition', '0ms');
+    r.style.setProperty('--transition-slow', '0ms');
+  } else {
+    r.style.setProperty('--transition-fast', '150ms ease');
+    r.style.setProperty('--transition', '200ms ease');
+    r.style.setProperty('--transition-slow', '300ms ease');
+  }
+}

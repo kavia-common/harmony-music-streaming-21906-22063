@@ -18,6 +18,7 @@ export default function Header() {
         <NavLink to="/search">Search</NavLink>
         <NavLink to="/playlists">Playlists</NavLink>
         <NavLink to="/favorites">Favorites</NavLink>
+        <NavLink to="/settings">Settings</NavLink>
       </nav>
       <div style={{ minWidth: 220, maxWidth: 420, flex: 1 }}>
         <SearchBar variant="sunken" />
