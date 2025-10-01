@@ -1,3 +1,5 @@
+/* Player bar modernized:
+   - Subtle shadows, consistent spacing and accent colors for ranges. */
 import React, { useContext } from 'react';
 import { PlayerContext } from '../../contexts/PlayerContext';
 import NowPlaying from '../player/NowPlaying';
@@ -9,7 +11,7 @@ function secondsToTime(s = 0) {
 }
 
 export default function PlayerBar() {
-  const { currentTrack, toggle, prev, next, isPlaying, position, duration, seek, volume, setVolume } = useContext(PlayerContext);
+  const { toggle, prev, next, isPlaying, position, duration, seek, volume, setVolume } = useContext(PlayerContext);
 
   return (
     <footer className="playerbar">
@@ -34,8 +36,8 @@ export default function PlayerBar() {
         />
         <span className="muted" style={{ minWidth: 40 }}>{secondsToTime(duration)}</span>
         <div className="volume">
-          <span className="muted">🔊</span>
-          <input type="range" min="0" max="1" step="0.01" value={volume} onChange={(e) => setVolume(Number(e.target.value))} />
+          <span className="muted" aria-hidden>🔊</span>
+          <input type="range" min="0" max="1" step="0.01" value={volume} onChange={(e) => setVolume(Number(e.target.value))} aria-label="Volume" />
         </div>
       </div>
     </footer>

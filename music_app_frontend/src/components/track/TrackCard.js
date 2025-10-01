@@ -1,3 +1,7 @@
+/* TrackCard modernized:
+   - Uses hover elevation from .card, consistent spacing and accent active state. */
+/* TrackCard modernized:
+   - Uses hover elevation from .card, consistent spacing and accent active state. */
 import React, { useContext, useEffect, useState } from 'react';
 import { PlayerContext } from '../../contexts/PlayerContext';
 import { getFavorites, toggleFavorite } from '../../services/api';

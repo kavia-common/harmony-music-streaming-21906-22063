@@ -1,3 +1,5 @@
+/* Browse page modernized:
+   - Clean spacing, section surfaces, and subtle fade-in. */
 import React, { useEffect, useState } from 'react';
 import { fetchFeatured, fetchTracks } from '../services/api';
 import TrackCard from '../components/track/TrackCard';
@@ -17,7 +19,7 @@ export default function Browse() {
   }, []);
 
   return (
-    <div>
+    <div className="fade-in-up">
       <div className="h1">Browse</div>
       <div className="muted" style={{ marginBottom: 12 }}>Featured playlists and tracks</div>
       <div className="grid" style={{ marginBottom: 16 }}>

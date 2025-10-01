@@ -1,3 +1,4 @@
+/* Base index styles kept minimal; global tokens and resets live in theme.css and styles/global.css */
 :root {
   --color-primary: #2563EB;
   --color-secondary: #F59E0B;
@@ -6,13 +7,3 @@
   --color-surface: #ffffff;
   --color-text: #111827;
 }
-
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  background: var(--color-bg);
-  color: var(--color-text);
-}
-a { color: inherit; }
-button { font: inherit; }

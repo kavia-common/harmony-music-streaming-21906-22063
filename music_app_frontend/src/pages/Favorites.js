@@ -1,3 +1,5 @@
+/* Favorites page modernized:
+   - Consistent spacing and fade-in. */
 import React, { useEffect, useState } from 'react';
 import { fetchTracks, getFavorites } from '../services/api';
 import TrackCard from '../components/track/TrackCard';
@@ -18,7 +20,7 @@ export default function Favorites() {
   }, []);
 
   return (
-    <div>
+    <div className="fade-in-up">
       <div className="h1">Favorites</div>
       {favIds.length === 0 ? <div className="muted">No favorites yet</div> : (
         <div className="grid" style={{ marginTop: 12 }}>

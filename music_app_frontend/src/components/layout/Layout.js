@@ -1,3 +1,6 @@
+/* Layout modernized:
+   - Applies theme vars and initial seed
+   - Adds responsive spacing and subtle section fade-in. */
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
@@ -17,7 +20,7 @@ export default function Layout() {
       <Header />
       <main className="app-main">
         <Sidebar />
-        <section className="surface" style={{ padding: 16 }}>
+        <section className="surface fade-in-up" style={{ padding: '16px' }}>
           <Outlet />
         </section>
       </main>

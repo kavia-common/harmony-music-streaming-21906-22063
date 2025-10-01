@@ -1,3 +1,5 @@
+/* SearchBar modernized:
+   - Debounced navigation, improved placeholder and touch target spacing. */
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -20,6 +22,7 @@ export default function SearchBar() {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       aria-label="Search"
+      style={{ paddingLeft: '14px', backgroundPosition: '10px center' }}
     />
   );
 }

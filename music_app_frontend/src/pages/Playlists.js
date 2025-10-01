@@ -1,3 +1,5 @@
+/* Playlists page modernized:
+   - Consistent spacing and fade-in. */
 import React, { useContext } from 'react';
 import { PlaylistContext } from '../contexts/PlaylistContext';
 
@@ -5,7 +7,7 @@ export default function Playlists() {
   const { playlists, loading } = useContext(PlaylistContext);
 
   return (
-    <div>
+    <div className="fade-in-up">
       <div className="h1">Your Playlists</div>
       {loading ? <div className="muted">Loading...</div> : (
         <div className="list" style={{ marginTop: 12 }}>
