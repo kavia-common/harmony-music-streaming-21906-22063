@@ -1,104 +1,158 @@
-/* CSS Variables for Theme Management */
+/* Ocean Professional - App layout and utility styles */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --color-primary: #2563EB;
+  --color-secondary: #F59E0B;
+  --color-error: #EF4444;
+  --color-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-text: #111827;
+  --color-muted: #6b7280;
+  --radius: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --border: 1px solid rgba(17,24,39,0.08);
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+html, body, #root {
+  height: 100%;
 }
 
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-main {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+  padding: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (max-width: 900px) {
+  .app-main {
+    grid-template-columns: 1fr;
   }
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+/* Surfaces */
+.surface {
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Typography */
+.h1 { font-size: 1.75rem; font-weight: 700; margin: 0 0 8px; }
+.h2 { font-size: 1.25rem; font-weight: 600; margin: 0 0 8px; }
+.muted { color: var(--color-muted); }
+
+/* Buttons */
+.btn {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: var(--shadow-sm);
+}
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn.secondary { background: var(--color-secondary); color: #1f2937; }
+.btn.ghost { background: transparent; color: var(--color-text); border: var(--border); }
+.btn.danger { background: var(--color-error); }
+
+/* Lists & grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.list { display: flex; flex-direction: column; gap: 8px; }
+
+/* Inputs */
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: var(--border);
+  background: #fff;
+  outline: none;
+}
+.input:focus { border-color: rgba(37,99,235,.5); box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+
+/* Player bar */
+.playerbar {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 600px) 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  position: sticky;
+  bottom: 0;
+  background: var(--color-surface);
+  border-top: var(--border);
+}
+.player-controls { display: flex; align-items: center; gap: 8px; justify-content: center; }
+.player-meta { display: flex; align-items: center; gap: 10px; }
+.progress { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; }
+.progress input[type="range"] { width: 100%; }
+.volume { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, rgba(37,99,235,.08), rgba(249,250,251,1));
+  border-bottom: var(--border);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.2px; }
+.nav { display: flex; align-items: center; gap: 8px; }
+.nav a {
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background .2s;
+}
+.nav a.active { background: rgba(37,99,235,.1); color: var(--color-primary); }
+
+/* Sidebar */
+.sidebar { padding: 12px; }
+
+/* Cards */
+.card {
+  padding: 12px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  gap: 8px;
 }
+.card .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
+/* Utility */
+.row { display: flex; align-items: center; gap: 8px; }
+.space-between { display: flex; align-items: center; justify-content: space-between; }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+/* Minimal icon button */
+.icon-btn {
+  background: #fff;
+  border: var(--border);
+  border-radius: 10px;
+  padding: 6px 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
-}
-
-.theme-toggle:active {
-  transform: translateY(0);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
-}
+.icon-btn.active { color: var(--color-secondary); border-color: rgba(245,158,11,.6); }
