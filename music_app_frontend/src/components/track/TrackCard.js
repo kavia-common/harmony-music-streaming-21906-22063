@@ -1,7 +1,5 @@
-/* TrackCard modernized:
-   - Uses hover elevation from .card, consistent spacing and accent active state. */
-/* TrackCard modernized:
-   - Uses hover elevation from .card, consistent spacing and accent active state. */
+/* TrackCard skeuomorphic:
+   - Raised card with gloss; tactile play button and beveled favorite icon. */
 import React, { useContext, useEffect, useState } from 'react';
 import { PlayerContext } from '../../contexts/PlayerContext';
 import { getFavorites, toggleFavorite } from '../../services/api';
@@ -34,8 +32,10 @@ export default function TrackCard({ track, allTracks }) {
       <div className="h2" style={{ fontSize: '1rem' }}>{track.title}</div>
       <div className="muted">{track.artist}</div>
       <div className="row">
-        <button className="btn" onClick={onPlayClick}>{active ? (isPlaying ? 'Pause' : 'Resume') : 'Play'}</button>
-        <button className={`icon-btn ${isFav ? 'active' : ''}`} onClick={onFav} aria-label="Favorite">★</button>
+        <button className="btn skeu-bevel skeu-gloss" onClick={onPlayClick}>
+          {active ? (isPlaying ? 'Pause' : 'Resume') : 'Play'}
+        </button>
+        <button className={`icon-btn skeu-bevel ${isFav ? 'active' : ''}`} onClick={onFav} aria-label="Favorite">★</button>
       </div>
     </div>
   );

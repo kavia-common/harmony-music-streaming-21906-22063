@@ -1,5 +1,5 @@
-/* Favorites page modernized:
-   - Consistent spacing and fade-in. */
+/* Favorites page skeuomorphic:
+   - Raised wrapper and tactile cards. */
 import React, { useEffect, useState } from 'react';
 import { fetchTracks, getFavorites } from '../services/api';
 import TrackCard from '../components/track/TrackCard';

@@ -1,5 +1,5 @@
-/* Browse page modernized:
-   - Clean spacing, section surfaces, and subtle fade-in. */
+/* Browse page skeuomorphic:
+   - Raised content wrapper; inner featured sections use sunken surfaces. */
 import React, { useEffect, useState } from 'react';
 import { fetchFeatured, fetchTracks } from '../services/api';
 import TrackCard from '../components/track/TrackCard';
@@ -29,8 +29,9 @@ export default function Browse() {
       </div>
       <div className="list">
         {featured.map((f) => (
-          <section key={f.id} className="surface" style={{ padding: 12 }}>
+          <section key={f.id} className="skeu-sunken" style={{ padding: 12 }}>
             <div className="h2">{f.title}</div>
+            <div className="skeu-divider" style={{ margin: '8px 0' }} />
             <FeaturedTracks trackIds={f.trackIds} allTracks={allTracks} />
           </section>
         ))}

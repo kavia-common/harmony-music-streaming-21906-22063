@@ -1,9 +1,10 @@
-/* SearchBar modernized:
-   - Debounced navigation, improved placeholder and touch target spacing. */
+/* SearchBar skeuomorphic:
+   - Debounced navigation; input is recessed with soft inner shadow.
+   - Accepts optional `variant="sunken"` to ensure correct class composition. */
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-export default function SearchBar() {
+export default function SearchBar({ variant = 'sunken' }) {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const [value, setValue] = useState(params.get('q') || '');
@@ -15,9 +16,12 @@ export default function SearchBar() {
     }
   }, [debounced, navigate]);
 
+  const cls = ['input'];
+  if (variant === 'sunken') cls.push('skeu-sunken');
+
   return (
     <input
-      className="input"
+      className={cls.join(' ')}
       placeholder="Search songs or artists..."
       value={value}
       onChange={(e) => setValue(e.target.value)}

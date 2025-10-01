@@ -1,5 +1,5 @@
-/* Player bar modernized:
-   - Subtle shadows, consistent spacing and accent colors for ranges. */
+/* Player bar skeuomorphic:
+   - Tactile circular controls, recessed track/volume, raised thumb. */
 import React, { useContext } from 'react';
 import { PlayerContext } from '../../contexts/PlayerContext';
 import NowPlaying from '../player/NowPlaying';
@@ -14,14 +14,16 @@ export default function PlayerBar() {
   const { toggle, prev, next, isPlaying, position, duration, seek, volume, setVolume } = useContext(PlayerContext);
 
   return (
-    <footer className="playerbar">
+    <footer className="playerbar skeu-gloss">
       <div className="player-meta">
         <NowPlaying />
       </div>
       <div className="player-controls">
-        <button className="icon-btn" aria-label="Previous" onClick={prev}>⏮</button>
-        <button className="btn" aria-label={isPlaying ? 'Pause' : 'Play'} onClick={toggle}>{isPlaying ? '⏸' : '▶️'}</button>
-        <button className="icon-btn" aria-label="Next" onClick={next}>⏭</button>
+        <button className="icon-btn skeu-bevel" aria-label="Previous" onClick={prev}>⏮</button>
+        <button className="btn skeu-bevel skeu-gloss" aria-label={isPlaying ? 'Pause' : 'Play'} onClick={toggle}>
+          {isPlaying ? '⏸' : '▶️'}
+        </button>
+        <button className="icon-btn skeu-bevel" aria-label="Next" onClick={next}>⏭</button>
       </div>
       <div className="progress">
         <span className="muted" style={{ minWidth: 40, textAlign: 'right' }}>{secondsToTime(position)}</span>

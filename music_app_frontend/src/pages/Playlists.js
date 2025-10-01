@@ -1,5 +1,5 @@
-/* Playlists page modernized:
-   - Consistent spacing and fade-in. */
+/* Playlists page skeuomorphic:
+   - Raised cards with gloss overlay. */
 import React, { useContext } from 'react';
 import { PlaylistContext } from '../contexts/PlaylistContext';
 

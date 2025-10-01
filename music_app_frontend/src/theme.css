@@ -1,32 +1,49 @@
 /* Ocean Professional Theme Variables
    - Centralized design tokens for colors, spacing, radius, shadow, and transitions.
-   - Used throughout the app for a consistent modern aesthetic. */
+   - Updated for skeuomorphic depth: elevation, bevel, and gloss layers. */
 :root {
   /* Colors */
   --color-primary: #2563EB;
   --color-secondary: #F59E0B;
   --color-success: #F59E0B;
   --color-error: #EF4444;
-  --color-bg: #f9fafb;
+  --color-bg: #f0f4f9; /* slightly cooler to enhance highlights */
   --color-surface: #ffffff;
   --color-text: #111827;
   --color-muted: #6b7280;
 
+  /* Surfaces for skeuomorphism */
+  --surface-muted: linear-gradient(to bottom, #f7fafc, #eef2f7);
+  --surface-raised: linear-gradient(to bottom, #ffffff, #f2f6fb);
+  --surface-sunken: linear-gradient(to bottom, #f1f5fb, #e9eef6);
+
   /* Gradients */
-  --gradient: linear-gradient(135deg, rgba(59,130,246,0.10), #f9fafb);
+  --gradient: linear-gradient(135deg, rgba(59,130,246,0.10), #f0f4f9);
 
-  /* Radius */
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
+  /* Gloss overlay */
+  --gloss-start: rgba(255,255,255,0.55);
+  --gloss-end: rgba(255,255,255,0);
 
-  /* Shadows */
-  --shadow-xs: 0 1px 1px rgba(0,0,0,0.04);
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 10px 24px rgba(0,0,0,0.10);
+  /* Bevel edges */
+  --bevel-light: rgba(255,255,255,0.9);
+  --bevel-dark: rgba(17,24,39,0.12);
+
+  /* Elevation shadows (outer soft) */
+  --elev-1: 0 4px 10px rgba(0,0,0,0.08), 0 1px 0 rgba(255,255,255,0.6) inset;
+  --elev-2: 0 10px 24px rgba(0,0,0,0.12), 0 2px 0 rgba(255,255,255,0.5) inset;
+
+  /* Radius (slightly larger for tactile feel) */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* Legacy shadows (kept for compatibility) */
+  --shadow-xs: 0 1px 1px rgba(0,0,0,0.05);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 14px 30px rgba(0,0,0,0.12);
 
   /* Spacing scale (px) */
   --space-1: 4px;

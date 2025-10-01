@@ -1,5 +1,5 @@
-/* Search page modernized:
-   - Consistent spacing and fade-in. */
+/* Search page skeuomorphic:
+   - Layered panels; results as raised cards. */
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchTracks } from '../services/api';
@@ -22,7 +22,9 @@ export default function Search() {
   return (
     <div className="fade-in-up">
       <div className="h1">Search</div>
-      <div className="muted" style={{ marginBottom: 12 }}>Showing results for: <strong>{q || 'All'}</strong></div>
+      <div className="skeu-sunken" style={{ padding: 12, marginBottom: 12 }}>
+        <div className="muted">Showing results for: <strong>{q || 'All'}</strong></div>
+      </div>
       <div className="grid">
         {results.map(t => <TrackCard key={t.id} track={t} allTracks={results} />)}
       </div>

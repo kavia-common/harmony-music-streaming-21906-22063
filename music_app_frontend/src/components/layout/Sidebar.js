@@ -1,5 +1,5 @@
-/* Sidebar modernized:
-   - Surface with generous spacing, improved input/button layout, subtle separators. */
+/* Sidebar skeuomorphic:
+   - Sunken container with recessed input and tactile add button. */
 import React, { useContext, useState } from 'react';
 import { PlaylistContext } from '../../contexts/PlaylistContext';
 import PlaylistItem from '../playlist/PlaylistItem';
@@ -14,12 +14,12 @@ export default function Sidebar() {
     setName('');
   };
   return (
-    <aside className="sidebar surface">
+    <aside className="sidebar">
       <div>
         <div className="h2">Playlists</div>
         <div className="row" style={{ margin: '8px 0' }}>
           <input className="input" placeholder="New playlist name" value={name} onChange={(e) => setName(e.target.value)} />
-          <button className="btn" onClick={onCreate}>Add</button>
+          <button className="btn skeu-bevel skeu-gloss" onClick={onCreate}>Add</button>
         </div>
       </div>
       <div className="list" style={{ paddingTop: '4px' }}>
